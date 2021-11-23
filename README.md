@@ -1,4 +1,9 @@
 # helm-samba4
+
+## Installation
+
+For chart repository import instructions go [here](https://github.com/szymonrychu/charts#readme).
+
 ## Helm Chart and Dockerfile for Samba4 based on alpine:latest.
 
 This Chart is fully-featured and enables some neat features :

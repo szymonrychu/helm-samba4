@@ -9,7 +9,7 @@ image:
   # if you want to use that.  Just remember it doesn't contain the script
   # so set the flag to true also.  That said, it only has one tag, and isn't
   # an automated build so you might be better with the below image.
-  repository: imartyn/samba4k8s
+  repository: szymonrychu/samba4
   lacksK8sScript: false
   #repository: stanback/alpine-samba
   #lacksK8sScript: true
