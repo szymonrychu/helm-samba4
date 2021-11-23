@@ -6,4 +6,9 @@ RUN apk add --update \
     samba-server \
     && rm -rf /var/cache/apk/*
 
+COPY --chmod=755 entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT [ "/entrypoint.sh" ]
+
 EXPOSE 445/tcp
+

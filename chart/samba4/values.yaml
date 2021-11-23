@@ -26,23 +26,26 @@ samba:
   users: []
 
 persistence:
-  enabled: false
-  type: pvc
-  pvc:
-    accessMode: readWriteOnce
-    size: 8Gi
-    storageClass: "-"
-  other:
-    emptyDir: {}
-
-privatePersistence:
-  enabled: false
-  pvc:
-    accessMode: readWriteOnce
-    size: 20Mi
-    storageClass: "-"
-  other:
-    emptyDir: {}
+  - name: samba-private
+    podVolumeMounts:
+      - mountPath: /privatepersist
+        name: private
+    deploymentVolumes:
+      - name: private
+        persistentVolumeClaim:
+          claimName: samba-private
+    pvSpec:
+      accessModes:
+      - ReadWriteOnce
+      capacity:
+        storage: 500Gi
+      hostPath:
+        path: /k8s-data/raid1/sambaPrivate
+        type: ""
+      persistentVolumeReclaimPolicy: Retain
+      storageClassName: emby-local-pv
+      volumeMode: Filesystem
+    
 
 livenessProbe:
   enabled: true

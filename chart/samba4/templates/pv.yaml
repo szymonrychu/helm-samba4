@@ -1,8 +1,7 @@
 {{- range .Values.persistence }}
 apiVersion: v1
-kind: PersistentVolumeClaim
+kind: PersistentVolume
 metadata:
-  name: {{ .name }}
   labels:
 {{- with $ }}
     app.kubernetes.io/name: {{ include "samba4.name" . }}
@@ -10,11 +9,7 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
+  name: {{ .name }}
 spec:
-  accessModes:
-  {{ .pvSpec.accessModes | toYaml | nindent 4}}
-  resources:
-    requests:
-      storage: {{ .pvSpec.capacity.storage }}
-  storageClassName: {{ .pvSpec.storageClassName }}
+{{ .pvSpec | toYaml | nindent 2}}
 {{- end }}
